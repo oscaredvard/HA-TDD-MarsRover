@@ -25,6 +25,7 @@ public class MarsRoverTests {
         //Assert
         Assertions.assertEquals(new Coordinates2D(3, 4), rover.getCurrentLocation());
     }
+
     @Test
     public void testMoveBackwardNorth() {
 
@@ -34,6 +35,7 @@ public class MarsRoverTests {
 
         Assertions.assertEquals(new Coordinates2D(3, 2), rover.getCurrentLocation());
     }
+
     @Test
     public void testMoveForwardSouth() {
 
@@ -43,6 +45,7 @@ public class MarsRoverTests {
 
         Assertions.assertEquals(new Coordinates2D(3, 2), rover.getCurrentLocation());
     }
+
     @Test
     public void testMoveBackwardSouth() {
 
@@ -52,6 +55,7 @@ public class MarsRoverTests {
 
         Assertions.assertEquals(new Coordinates2D(3, 4), rover.getCurrentLocation());
     }
+
     @Test
     public void testMoveForwardWest() {
 
@@ -61,6 +65,7 @@ public class MarsRoverTests {
 
         Assertions.assertEquals(new Coordinates2D(2, 3), rover.getCurrentLocation());
     }
+
     @Test
     public void testMoveBackwardWest() {
 
@@ -70,6 +75,7 @@ public class MarsRoverTests {
 
         Assertions.assertEquals(new Coordinates2D(4, 3), rover.getCurrentLocation());
     }
+
     @Test
     public void testMoveForwardEast() {
 
@@ -79,6 +85,7 @@ public class MarsRoverTests {
 
         Assertions.assertEquals(new Coordinates2D(4, 3), rover.getCurrentLocation());
     }
+
     @Test
     public void testMoveBackwardEast() {
 
@@ -87,5 +94,92 @@ public class MarsRoverTests {
         rover.move("b");
 
         Assertions.assertEquals(new Coordinates2D(2, 3), rover.getCurrentLocation());
+    }
+
+    @Test
+    public void testRotateLeftFromNorth() {
+
+        MarsRover rover = new MarsRoverImpl(new Coordinates2D(3, 3), Direction.NORTH);
+
+        rover.rotate("l");
+
+        Assertions.assertEquals(Direction.WEST, rover.getCurrentDirection());
+    }
+
+    @Test
+    public void testRotateRightFromNorth() {
+
+        MarsRover rover = new MarsRoverImpl(new Coordinates2D(3, 3), Direction.NORTH);
+
+        rover.rotate("r");
+
+        Assertions.assertEquals(Direction.EAST, rover.getCurrentDirection());
+    }
+    @Test
+    public void testRotateLeftFromSouth() {
+
+        MarsRover rover = new MarsRoverImpl(new Coordinates2D(3, 3), Direction.SOUTH);
+
+        rover.rotate("l");
+
+        Assertions.assertEquals(Direction.EAST, rover.getCurrentDirection());
+    }
+    @Test
+    public void testRotateRightFromSouth() {
+
+        MarsRover rover = new MarsRoverImpl(new Coordinates2D(3, 3), Direction.SOUTH);
+
+        rover.rotate("r");
+
+        Assertions.assertEquals(Direction.WEST, rover.getCurrentDirection());
+    }
+    @Test
+    public void testRotateLeftFromWest() {
+
+        MarsRover rover = new MarsRoverImpl(new Coordinates2D(3, 3), Direction.WEST);
+
+        rover.rotate("l");
+
+        Assertions.assertEquals(Direction.SOUTH, rover.getCurrentDirection());
+    }
+    @Test
+    public void testRotateRightFromWest() {
+
+        MarsRover rover = new MarsRoverImpl(new Coordinates2D(3, 3), Direction.WEST);
+
+        rover.rotate("r");
+
+        Assertions.assertEquals(Direction.NORTH, rover.getCurrentDirection());
+    }
+    @Test
+    public void testRotateLeftFromEast() {
+
+        MarsRover rover = new MarsRoverImpl(new Coordinates2D(3, 3), Direction.EAST);
+
+        rover.rotate("l");
+
+        Assertions.assertEquals(Direction.NORTH, rover.getCurrentDirection());
+    }
+    @Test
+    public void testRotateRightFromEast() {
+
+        MarsRover rover = new MarsRoverImpl(new Coordinates2D(3, 3), Direction.EAST);
+
+        rover.rotate("r");
+
+        Assertions.assertEquals(Direction.SOUTH, rover.getCurrentDirection());
+    }
+
+    @Test
+    public void testArbitraryCommandoString() {
+
+        MarsRover rover = new MarsRoverImpl(new Coordinates2D(3, 3), Direction.NORTH);
+
+        rover.command("ffrblb");
+
+        Assertions.assertEquals(new Coordinates2D(2, 4), rover.getCurrentLocation());
+
+        Assertions.assertEquals(Direction.NORTH, rover.getCurrentDirection());
+
     }
 }

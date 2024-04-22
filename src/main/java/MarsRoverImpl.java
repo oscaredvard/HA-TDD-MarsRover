@@ -43,6 +43,48 @@ public class MarsRoverImpl implements MarsRover {
     }
 
     @Override
+    public void rotate(String commands){
+        if (this.direction == Direction.NORTH) {
+            if (commands.equals("l")) {
+               this.direction = Direction.WEST;
+            } else if (commands.equals("r")){
+                this.direction = Direction.EAST;
+            }
+        }
+        else if (this.direction == Direction.SOUTH) {
+            if (commands.equals("l")) {
+                this.direction = Direction.EAST;
+            } else if (commands.equals("r")){
+                this.direction = Direction.WEST;
+            }
+        }
+        else if (this.direction == Direction.WEST) {
+            if (commands.equals("l")) {
+                this.direction = Direction.SOUTH;
+            } else if (commands.equals("r")){
+                this.direction = Direction.NORTH;
+            }
+        }
+        else if (this.direction == Direction.EAST) {
+            if (commands.equals("l")) {
+                this.direction = Direction.NORTH;
+            } else if (commands.equals("r")){
+                this.direction = Direction.SOUTH;
+            }
+        }
+    }
+
+    @Override
+    public void command(String commands) {
+        for (int i = 0; i < commands.length(); i++)
+            if (commands.charAt(i) == 'f' || commands.charAt(i) == 'b') {
+                this.move(Character.toString(commands.charAt(i)));
+            } else if (commands.charAt(i) == 'l' || commands.charAt(i) == 'r') {
+                this.rotate(Character.toString(commands.charAt(i)));
+            }
+    }
+
+    @Override
     public Coordinates2D getCurrentLocation() {
         return new Coordinates2D(x, y);
     }
