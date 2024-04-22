@@ -12,34 +12,133 @@ public class MarsRoverImpl implements MarsRover {
 
     @Override
     public void move(String commands){
-        if (this.direction == Direction.NORTH) {
-            if (commands.equals("f")) {
-                this.y += 1;
-            } else if (commands.equals("b")){
-                this.y -= 1;
-            }
-        }
-        else if (this.direction == Direction.SOUTH) {
-            if (commands.equals("f")) {
-                this.y -= 1;
-            } else if (commands.equals("b")){
-                this.y += 1;
-            }
-        }
-        else if (this.direction == Direction.WEST) {
-            if (commands.equals("f")) {
-                this.x -= 1;
-            } else if (commands.equals("b")){
-                this.x += 1;
-            }
-        }
-        else if (this.direction == Direction.EAST) {
-            if (commands.equals("f")) {
-                this.x += 1;
-            } else if (commands.equals("b")){
-                this.x -= 1;
-            }
-        }
+
+       if (this.y != 0 && this.y != 6) {
+           if (this.direction == Direction.NORTH) {
+               if (commands.equals("f")) {
+                   this.y += 1;
+               } else if (commands.equals("b")){
+                   this.y -= 1;
+               }
+           }
+           else if (this.direction == Direction.SOUTH) {
+               if (commands.equals("f")) {
+                   this.y -= 1;
+               } else if (commands.equals("b")){
+                   this.y += 1;
+               }
+           }
+       } else if (this.y == 0) {
+           if (this.x < 4) {
+               if (this.direction == Direction.NORTH) {
+                   if (commands.equals("f")) {
+                       this.y += 1;
+                   } else if (commands.equals("b")) {
+                       this.x += 4;
+                   }
+               } else if (this.direction == Direction.SOUTH) {
+                   if (commands.equals("f")) {
+                       this.x += 4;
+                   } else if (commands.equals("b")) {
+                       this.y += 1;
+                   }
+               }
+           } else if (this.x <= 7) {
+               if (this.direction == Direction.NORTH) {
+                   if (commands.equals("f")) {
+                       this.y += 1 ;
+                   } else if (commands.equals("b")) {
+                       this.x -= 4;
+                   }
+               } else if (this.direction == Direction.SOUTH) {
+                   if (commands.equals("f")) {
+                       this.x -= 4 ;
+                   } else if (commands.equals("b")) {
+                       this.y += 1;
+                   }
+               }
+           }
+       } else if (this.y == 6) {
+           if (this.x < 4) {
+               if (this.direction == Direction.NORTH) {
+                   if (commands.equals("f")) {
+                       this.x += 4 ;
+                   } else if (commands.equals("b")) {
+                       this.y -= 1;
+                   }
+               } else if (this.direction == Direction.SOUTH) {
+                   if (commands.equals("f")) {
+                       this.y -= 1 ;
+                   } else if (commands.equals("b")) {
+                       this.x += 4;
+                   }
+               }
+           } else if (this.x <= 7) {
+               if (this.direction == Direction.NORTH) {
+                   if (commands.equals("f")) {
+                       this.x -= 4 ;
+                   } else if (commands.equals("b")) {
+                       this.y -= 1;
+                   }
+               } else if (this.direction == Direction.SOUTH) {
+                   if (commands.equals("f")) {
+                       this.y -= 1 ;
+                   } else if (commands.equals("b")) {
+                       this.x -= 4;
+                   }
+               }
+           }
+       }
+
+
+       if (this.x != 0 && this.x != 7) {
+            if (this.direction == Direction.WEST) {
+               if (commands.equals("f")) {
+                   this.x -= 1;
+               } else if (commands.equals("b")){
+                   this.x += 1;
+               }
+           }
+           else if (this.direction == Direction.EAST) {
+               if (commands.equals("f")) {
+                   this.x += 1;
+               } else if (commands.equals("b")){
+                   this.x -= 1;
+               }
+           }
+       } else {
+          if (this.x == 0)  {
+              if (this.direction == Direction.WEST) {
+                  if (commands.equals("f")) {
+                      this.x = 7;
+                  } else if (commands.equals("b")){
+                      this.x += 1;
+                  }
+              }
+              else if (this.direction == Direction.EAST) {
+                  if (commands.equals("f")) {
+                      this.x += 1;
+                  } else if (commands.equals("b")){
+                      this.x = 7;
+                  }
+              }
+          } else if (this.x == 7) {
+              if (this.direction == Direction.WEST) {
+                  if (commands.equals("f")) {
+                      this.x -= 1;
+                  } else if (commands.equals("b")){
+                      this.x = 0;
+                  }
+              }
+              else if (this.direction == Direction.EAST) {
+                  if (commands.equals("f")) {
+                      this.x = 0;
+                  } else if (commands.equals("b")){
+                      this.x -= 1;
+                  }
+              }
+          }
+       }
     }
 
     @Override
